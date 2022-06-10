@@ -246,8 +246,14 @@ void main()
 
 	for (int i = 0; i < sizeof(group) / sizeof(group[0]); i++)
 	{
-		group[i]->print();
+		cout << typeid(*group[i]).name() << endl;
+		//group[i]->print();
+		cout << *group[i] << endl;
 		cout << "-------\n";
 	}
 
+	for (int i = 0; i < sizeof(group) / sizeof(group[0]); i++)
+	{
+		delete group[i];
+	}
 }
