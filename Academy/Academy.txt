@@ -1,0 +1,6 @@
+Pinkman Jessie 23Chemistry 1 90 95
+White Walter 50Chemistry  25
+Schreder Hank 40Criminalistics 5 95 80
+Vercetti Tomas 30Theft 3 90 85
+Diaz Ricardo 50Weapons distribution  20
+Einstein Albert 143Astronomy  100

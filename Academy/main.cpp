@@ -1,4 +1,6 @@
 #include<iostream>
+#include<fstream>
+
 #include<string>
 using std::cin;
 using std::cout;
@@ -53,9 +55,14 @@ public:
 	}
 
 	//					Methods:
-	virtual std::ostream& print(std::ostream& os = std::cout)const
+	virtual std::ostream& print(std::ostream& os /*= std::cout*/)const
 	{
 		return os << last_name << " " << first_name << " " << age << " years.\n";
+	}
+	virtual std::ofstream& print(std::ofstream& ofs)const
+	{
+		ofs << last_name << " " << first_name << " " << age;
+		return ofs;
 	}
 };
 
@@ -63,6 +70,11 @@ std::ostream& operator<<(std::ostream& os, const Human& obj)
 {
 	return obj.print(os);
 }
+std::ofstream& operator<<(std::ofstream& ofs, const Human& obj)
+{
+	return obj.print(ofs);
+}
+
 
 #define STUDENT_TAKE_PARAMETERS const std::string& speciality, const std::string& group, unsigned int year, double rating, double attendance
 #define STUDENT_GIVE_PARAMETERS speciality, group, year, rating, attendance
@@ -135,6 +147,12 @@ public:
 		Human::print(os);
 		return os << "Специальность: " << speciality + " " + "Группа: " + group << " " << "Курс: " << year << " " << "Рейтинг: " << rating << " " << "Посещаемость: " << attendance << endl;
 	}
+	std::ofstream& print(std::ofstream& ofs)const
+	{
+		Human::print(ofs);
+		ofs << speciality << " " << year << " " << rating << " " << attendance;
+		return ofs;
+	}
 };
 
 class Teacher :public Human
@@ -178,8 +196,19 @@ public:
 
 	std::ostream& print(std::ostream& os)const
 	{
-		Human::print();
+		Human::print(os);
 		return os << "Специальность: " << speciality + " " << "Опыт: " << experience << endl;
+	}
+	std::ofstream& print(std::ofstream& ofs)const
+	{
+		Human::print(ofs);
+		ofs.width(20)
+		ofs << std::left;
+		ofs << speciality;
+		ofs.width(5);
+		ofs << std::right;
+		ofs << std::experense
+		return ofs;
 	}
 };
 class Graduate :public Student
@@ -250,14 +279,19 @@ void main()
 		new Teacher("Diaz", "Ricardo", 50, "Weapons distribution", 20),
 		new Teacher("Einstein", "Albert", 143, "Astronomy", 100)
 	};
-
+	std::ofstream fout("Academy.txt");
 	for (int i = 0; i < sizeof(group) / sizeof(group[0]); i++)
 	{
 		cout << typeid(*group[i]).name() << endl;
 		//group[i]->print();
 		cout << *group[i] << endl;
 		cout << "-------\n";
+		fout << *group[i] << endl;
+
 	}
+	fout.close();
+	system("notepad Academy.txt");
+
 
 	for (int i = 0; i < sizeof(group) / sizeof(group[0]); i++)
 	{
