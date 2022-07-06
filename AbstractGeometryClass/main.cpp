@@ -1,4 +1,4 @@
-//AbstractGeometry
+п»ї//AbstractGeometry
 #pragma warning(disable:4326)
 #define _USE_MATH_DEFINES
 #include<iostream>
@@ -8,8 +8,8 @@ using namespace std;
 
 namespace Geometry
 {
-	//enum (Enumeration - Перечисление) - это набор целочисленных констант.
-//Перечисление так же является типом данных.
+	//enum (Enumeration - РџРµСЂРµС‡РёСЃР»РµРЅРёРµ) - СЌС‚Рѕ РЅР°Р±РѕСЂ С†РµР»РѕС‡РёСЃР»РµРЅРЅС‹С… РєРѕРЅСЃС‚Р°РЅС‚.
+//РџРµСЂРµС‡РёСЃР»РµРЅРёРµ С‚Р°Рє Р¶Рµ СЏРІР»СЏРµС‚СЃСЏ С‚РёРїРѕРј РґР°РЅРЅС‹С….
 	enum Color
 	{
 		red = 0x000000FF,
@@ -93,8 +93,8 @@ namespace Geometry
 		virtual void draw()const = 0;
 		virtual void info()const
 		{
-			cout << "Площадь фигуры: " << get_area() << endl;
-			cout << "Периметр фигуры:" << get_perimeter() << endl;
+			cout << "РџР»РѕС‰Р°РґСЊ С„РёРіСѓСЂС‹: " << get_area() << endl;
+			cout << "РџРµСЂРёРјРµС‚СЂ С„РёРіСѓСЂС‹:" << get_perimeter() << endl;
 			cout << typeid(*this).name() << endl;
 			draw();
 		}
@@ -102,7 +102,7 @@ namespace Geometry
 
 	class Square :public Shape
 	{
-		double side;	//длина стороны
+		double side;	//РґР»РёРЅР° СЃС‚РѕСЂРѕРЅС‹
 	public:
 		double get_side()const
 		{
@@ -130,9 +130,9 @@ namespace Geometry
 		}
 		void draw()const
 		{
-			//В переменную hConsole сохраняем стандартный вывод текущего окна консоли:
+			//Р’ РїРµСЂРµРјРµРЅРЅСѓСЋ hConsole СЃРѕС…СЂР°РЅСЏРµРј СЃС‚Р°РЅРґР°СЂС‚РЅС‹Р№ РІС‹РІРѕРґ С‚РµРєСѓС‰РµРіРѕ РѕРєРЅР° РєРѕРЅСЃРѕР»Рё:
 			HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-			//Для стандартного вывода текущего окна задаем цвет текста и фона:
+			//Р”Р»СЏ СЃС‚Р°РЅРґР°СЂС‚РЅРѕРіРѕ РІС‹РІРѕРґР° С‚РµРєСѓС‰РµРіРѕ РѕРєРЅР° Р·Р°РґР°РµРј С†РІРµС‚ С‚РµРєСЃС‚Р° Рё С„РѕРЅР°:
 			SetConsoleTextAttribute(hConsole, get_color());
 			for (int i = 0; i < side; i++)
 			{
@@ -142,14 +142,14 @@ namespace Geometry
 				}
 				cout << endl;
 			}
-			//Для стандартного вывода текущего окна задаем цвет текста и фона:
+			//Р”Р»СЏ СЃС‚Р°РЅРґР°СЂС‚РЅРѕРіРѕ РІС‹РІРѕРґР° С‚РµРєСѓС‰РµРіРѕ РѕРєРЅР° Р·Р°РґР°РµРј С†РІРµС‚ С‚РµРєСЃС‚Р° Рё С„РѕРЅР°:
 			SetConsoleTextAttribute(hConsole, Color::console_default);
 		}
 
 		void info()const
 		{
 			cout << typeid(*this).name() << endl;
-			cout << "Длина стороны квадрата: " << get_side() << endl;
+			cout << "Р”Р»РёРЅР° СЃС‚РѕСЂРѕРЅС‹ РєРІР°РґСЂР°С‚Р°: " << get_side() << endl;
 			Shape::info();
 		}
 	};
@@ -192,26 +192,26 @@ namespace Geometry
 		}
 		void draw()const
 		{
-			//1) Получаем окно консоли:
-			//HWND - Handler to Window (Обработчик окна консоли)
+			//1) РџРѕР»СѓС‡Р°РµРј РѕРєРЅРѕ РєРѕРЅСЃРѕР»Рё:
+			//HWND - Handler to Window (РћР±СЂР°Р±РѕС‚С‡РёРє РѕРєРЅР° РєРѕРЅСЃРѕР»Рё)
 			//HWND hwnd = FindWindow(NULL, L"Inheritance - Microsoft VisualStudio");
 			//HWND hwnd = GetDesktopWindow();
 			HWND hwnd = GetConsoleWindow();
-			//2) Для того чтобы рисовать, нужно создать контекст устройства:
+			//2) Р”Р»СЏ С‚РѕРіРѕ С‡С‚РѕР±С‹ СЂРёСЃРѕРІР°С‚СЊ, РЅСѓР¶РЅРѕ СЃРѕР·РґР°С‚СЊ РєРѕРЅС‚РµРєСЃС‚ СѓСЃС‚СЂРѕР№СЃС‚РІР°:
 			HDC hdc = GetDC(hwnd);	//HDC - Handler to Device Context.
-			// Грубо говоря, hdc - это то, на чем мы будем рисовать.
+			// Р“СЂСѓР±Рѕ РіРѕРІРѕСЂСЏ, hdc - СЌС‚Рѕ С‚Рѕ, РЅР° С‡РµРј РјС‹ Р±СѓРґРµРј СЂРёСЃРѕРІР°С‚СЊ.
 
-			//3) Создадим инструменты, которыми мы будем рисовать:
+			//3) РЎРѕР·РґР°РґРёРј РёРЅСЃС‚СЂСѓРјРµРЅС‚С‹, РєРѕС‚РѕСЂС‹РјРё РјС‹ Р±СѓРґРµРј СЂРёСЃРѕРІР°С‚СЊ:
 			//https://docs.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-createpen
-			HPEN hPen = CreatePen(PS_SOLID, line_width, color);	//Карандаш рисует контур фигуры
-			//Для того чтобы применить заливку, нужна кисть:
+			HPEN hPen = CreatePen(PS_SOLID, line_width, color);	//РљР°СЂР°РЅРґР°С€ СЂРёСЃСѓРµС‚ РєРѕРЅС‚СѓСЂ С„РёРіСѓСЂС‹
+			//Р”Р»СЏ С‚РѕРіРѕ С‡С‚РѕР±С‹ РїСЂРёРјРµРЅРёС‚СЊ Р·Р°Р»РёРІРєСѓ, РЅСѓР¶РЅР° РєРёСЃС‚СЊ:
 			HBRUSH hBrush = CreateSolidBrush(color);
 
-			//4) Создать карандаш НЕ достаточно, его еще нужно выбрать,
-			//   и толко тогда мы сможем им рисовать:
+			//4) РЎРѕР·РґР°С‚СЊ РєР°СЂР°РЅРґР°С€ РќР• РґРѕСЃС‚Р°С‚РѕС‡РЅРѕ, РµРіРѕ РµС‰Рµ РЅСѓР¶РЅРѕ РІС‹Р±СЂР°С‚СЊ,
+			//   Рё С‚РѕР»РєРѕ С‚РѕРіРґР° РјС‹ СЃРјРѕР¶РµРј РёРј СЂРёСЃРѕРІР°С‚СЊ:
 			SelectObject(hdc, hPen);
 			SelectObject(hdc, hBrush);
-			//5) Рисуем прямоугольник:
+			//5) Р РёСЃСѓРµРј РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє:
 			::Rectangle(hdc, start_x, start_y, start_x + side_a, start_y + side_b);
 
 			DeleteObject(hBrush);
@@ -221,8 +221,8 @@ namespace Geometry
 		void info()const
 		{
 			cout << typeid(*this).name() << endl;
-			cout << "Сторона A: " << side_a << endl;
-			cout << "Сторона B: " << side_b << endl;
+			cout << "РЎС‚РѕСЂРѕРЅР° A: " << side_a << endl;
+			cout << "РЎС‚РѕСЂРѕРЅР° B: " << side_b << endl;
 			Shape::info();
 		}
 	};
@@ -277,7 +277,7 @@ namespace Geometry
 		void info()const
 		{
 			cout << typeid(*this).name() << endl;
-			cout << "Радиус круга: " << get_radius() << endl;;
+			cout << "Р Р°РґРёСѓСЃ РєСЂСѓРіР°: " << get_radius() << endl;;
 			Shape::info();
 		}
 	};
@@ -349,8 +349,8 @@ namespace Geometry
 		void info()const
 		{
 			cout << typeid(*this).name() << endl;
-			cout << "Сторона треугольника: " << side << endl;
-			cout << "Высота треугольника: " << get_height() << endl;
+			cout << "РЎС‚РѕСЂРѕРЅР° С‚СЂРµСѓРіРѕР»СЊРЅРёРєР°: " << side << endl;
+			cout << "Р’С‹СЃРѕС‚Р° С‚СЂРµСѓРіРѕР»СЊРЅРёРєР°: " << get_height() << endl;
 			Shape::info();
 		}
 	};
@@ -433,9 +433,9 @@ namespace Geometry
 		void info()const
 		{
 			cout << typeid(*this).name() << endl;
-			cout << "Основание треунольника: " << base << endl;
-			cout << "Сторона треугольника: " << side << endl;
-			cout << "Высота треугольника: " << get_height() << endl;
+			cout << "РћСЃРЅРѕРІР°РЅРёРµ С‚СЂРµСѓРЅРѕР»СЊРЅРёРєР°: " << base << endl;
+			cout << "РЎС‚РѕСЂРѕРЅР° С‚СЂРµСѓРіРѕР»СЊРЅРёРєР°: " << side << endl;
+			cout << "Р’С‹СЃРѕС‚Р° С‚СЂРµСѓРіРѕР»СЊРЅРёРєР°: " << get_height() << endl;
 			Shape::info();
 
 		}
@@ -450,9 +450,9 @@ void main()
 
 	//Shape shape(Color::console_blue);
 	Geometry::Square square(5, 50, 10, 5, Geometry::Color::console_red);
-	/*cout << "Длина стороны квадрата: " << square.get_side() << endl;
-	cout << "Площадь квадрата:       " << square.get_area() << endl;
-	cout << "Периметр квадрата:      " << square.get_perimeter() << endl;
+	/*cout << "Р”Р»РёРЅР° СЃС‚РѕСЂРѕРЅС‹ РєРІР°РґСЂР°С‚Р°: " << square.get_side() << endl;
+	cout << "РџР»РѕС‰Р°РґСЊ РєРІР°РґСЂР°С‚Р°:       " << square.get_area() << endl;
+	cout << "РџРµСЂРёРјРµС‚СЂ РєРІР°РґСЂР°С‚Р°:      " << square.get_perimeter() << endl;
 	square.draw();*/
 	square.info();
 
